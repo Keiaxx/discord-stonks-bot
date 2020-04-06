@@ -1,0 +1,5 @@
+{
+  "token": "YOUR KEY HERE",
+  "prefix": ".",
+  "baseURL": "CALLBACK URL FOR TIMEZONE DIRECT TO THIS APP"
+}

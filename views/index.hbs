@@ -1,0 +1,38 @@
+<h2>{{title}}</h2>
+<h5>Timezone Set Page</h5>
+<p id="result">Setting timezone. Please wait!</p>
+
+<script>
+    var vars = {}, hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars[hash[0]] = hash[1];
+    }
+
+    if (vars.hasOwnProperty('tz')) {
+        var key = vars['tz']
+        var tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+        var encodedTZ = encodeURI(tz)
+        console.log(key + " " + encodedTZ)
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText
+                console.log(response)
+                if(response == "OK"){
+                    document.getElementById("result").innerHTML = "Your timezone has been set! You may now close this page."
+                }else if(response == "ERROR") {
+                    document.getElementById("result").innerHTML = "There was an error setting your timezone! Pls let Keiaxx#7052 know of this issue."
+                }else{
+                    document.getElementById("result").innerHTML = "Unable to set timezone! Has your link expired? Links only last for 15 minutes and another must be requested."
+                }
+            }
+        };
+        xhr.open("POST", "/", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.send(JSON.stringify({ "key" : key, "tz" : encodedTZ }));
+    }
+</script>
