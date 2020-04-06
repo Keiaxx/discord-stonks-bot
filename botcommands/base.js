@@ -67,6 +67,17 @@ module.exports = {
         guild = newGuild
       }
 
+      if(arg1 === 'help') {
+        let helps = '.stonks help - view this\n' +
+          '.stonks price - automatically set price for am/pm\n' +
+          '      Exapmle: .stonks 100' +
+          '.stonks set day am/pm price - manually backfill missing dates\n' +
+          '      Example: .stonks set monday am 100\n' +
+          '.stonks tz - sends you a link to set your timezone\n'
+
+        return message.channel.send(`\`\`\`${helps}\`\`\``)
+      }
+
       if (arg1 === 'tz') {
         // TODO Send TZ set link here
         // Get user ID and add UUID to redis
