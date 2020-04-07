@@ -70,7 +70,7 @@ module.exports = {
       if(arg1 === 'help') {
         let helps = '.stonks help - view this\n' +
           '.stonks price - automatically set price for am/pm\n' +
-          '      Exapmle: .stonks 100' +
+          '      Example: .stonks 100\n' +
           '.stonks set day am/pm price - manually backfill missing dates\n' +
           '      Example: .stonks set monday am 100\n' +
           '.stonks tz - sends you a link to set your timezone\n'
